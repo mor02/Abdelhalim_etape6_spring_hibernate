@@ -8,6 +8,7 @@ package com.cours.allo.docteur.dao.impl;
 import com.cours.allo.docteur.dao.IDao;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -16,6 +17,7 @@ import javax.persistence.EntityManager;
  */
 public abstract class AbstractDao<T> implements IDao<T> {
 
+	@PersistenceContext
     protected EntityManager em;
 
     public AbstractDao(Class<T> myClass) {

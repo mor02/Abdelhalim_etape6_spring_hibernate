@@ -7,10 +7,20 @@ package com.cours.allo.docteur.dao.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
 /**
  *
  * @author elhad
  */
+//@Entity
+//@Table(name="adresse")
+//@NamedQueries({
+//	@NamedQuery(name="find.allAdress", query="SELECT a from adress a")
+//})
 public class Adresse implements Serializable {
 
     private static final long serialVersionUID = 1L;

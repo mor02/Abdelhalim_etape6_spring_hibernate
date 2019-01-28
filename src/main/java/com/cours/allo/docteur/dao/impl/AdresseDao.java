@@ -10,11 +10,13 @@ import com.cours.allo.docteur.dao.entities.Adresse;
 import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author ElHadji
  */
+@Transactional
 public class AdresseDao extends AbstractDao<Adresse> implements IAdresseDao {
 
     private static final Log log = LogFactory.getLog(AdresseDao.class);
@@ -27,7 +29,8 @@ public class AdresseDao extends AbstractDao<Adresse> implements IAdresseDao {
 
       @Override
     public List<Adresse> findAllAdresses() {
-        return null;
+    	  return em.createNamedQuery("find.AllAdresses").getResultList();
+    	  
     }
 
     @Override
@@ -47,7 +50,15 @@ public class AdresseDao extends AbstractDao<Adresse> implements IAdresseDao {
 
     @Override
     public Adresse createAdresse(Adresse adresse) {
-        return null;
+        if(adresse !=null) {
+        	try {
+        		em.persist(adresse);
+        	}catch(Exception e) {
+        		System.out.println("Impossible de créer cette adresse");
+        	}
+        }
+        
+        return adresse;
     }
 
     @Override

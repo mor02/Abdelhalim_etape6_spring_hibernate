@@ -5,10 +5,12 @@
  */
 package com.cours.allo.docteur.service;
 
-import com.cours.allo.docteur.dao.IAdresseDao;
-import com.cours.allo.docteur.dao.IUtilisateurDao;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.cours.allo.docteur.dao.IAdresseDao;
+import com.cours.allo.docteur.dao.IUtilisateurDao;
 
 /**
  *
@@ -18,8 +20,8 @@ public class ServiceFacade implements IServiceFacade {
 
     private static final Log log = LogFactory.getLog(ServiceFacade.class);
     // On liste toutes les DAO : un DAO pour chaque entité (Utilisateur,Adresse ect ....)
-
-    private IUtilisateurDao utilisateurDao = null;
+    
+    private IUtilisateurDao utilisateurDao;
 
     private IAdresseDao adresseDao = null;
 

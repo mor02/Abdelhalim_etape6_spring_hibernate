@@ -8,42 +8,67 @@ package com.cours.allo.docteur.dao.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author elhad
  */
+@Entity
+@Table(name="utilisateur")
+@NamedQueries({
+	@NamedQuery(name="Utilisateur.findAll",query="SELECT u FROM Utilisateur u")
+})
 public class Utilisateur implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    //@Basic(optional=false)
+    @Column(name="idUtilisateur")
     private Integer idUtilisateur;
-
+    @Column(name="civilite")
     private String civilite;
-
+    @Column(name="prenom")
     private String prenom;
-
+    @Column(name="nom")
     private String nom;
-
+    @Column(name="identifiant")
     private String identifiant;
-
+    @Column(name="motPasse")
     private String motPasse;
-
+    @Column(name="numeroTelephone")
     private String numeroTelephone;
-
+    @Column(name="dateNaissance")
     private Date dateNaissance;
-
+    @Column(name="dateCreation")
     private Date dateCreation;
-
+    @Column(name="dateModification")
     private Date dateModification;
-
+    @Column(name="actif")
     private Boolean actif;
-
+    @Column(name="marquerEffacer")
     private Boolean marquerEffacer;
-
+    @Version
     private Integer version;
-
+    @Transient
     private List<Adresse> adresses;
 
     public Utilisateur() {

@@ -8,13 +8,19 @@ package com.cours.allo.docteur.dao.impl;
 import com.cours.allo.docteur.dao.IUtilisateurDao;
 import com.cours.allo.docteur.dao.entities.Utilisateur;
 import java.util.List;
+
+import javax.persistence.criteria.CriteriaBuilder.In;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.transaction.annotation.Transactional;
+import org.w3c.dom.ls.LSInput;
 
 /**
  *
  * @author ElHadji
  */
+@Transactional
 public class UtilisateurDao extends AbstractDao<Utilisateur> implements IUtilisateurDao {
 
     private static final Log log = LogFactory.getLog(UtilisateurDao.class);
@@ -28,7 +34,11 @@ public class UtilisateurDao extends AbstractDao<Utilisateur> implements IUtilisa
 
     @Override
     public List<Utilisateur> findAllUtilisateurs() {
-        return null;
+        List<Utilisateur> listeUsers;
+        
+        listeUsers = em.createNamedQuery("Utilisateur.findAll").getResultList();
+        
+        return listeUsers;
     }
 
     @Override
@@ -58,16 +68,19 @@ public class UtilisateurDao extends AbstractDao<Utilisateur> implements IUtilisa
 
     @Override
     public Utilisateur createUtilisateur(Utilisateur user) {
-        return null;
+        em.persist(user);
+    	return user;
     }
 
     @Override
     public Utilisateur updateUtilisateur(Utilisateur user) {
-        return null;
+        return em.merge(user);
     }
 
     @Override
     public boolean deleteUtilisateur(Utilisateur user) {
-        return false;
+    	Utilisateur userBdd = em.find(Utilisateur.class,Integer.toString(user.getIdUtilisateur()));
+    	em.remove(userBdd);
+    	return true;
     }
 }
