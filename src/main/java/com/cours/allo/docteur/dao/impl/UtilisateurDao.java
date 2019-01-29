@@ -5,22 +5,22 @@
  */
 package com.cours.allo.docteur.dao.impl;
 
-import com.cours.allo.docteur.dao.IUtilisateurDao;
-import com.cours.allo.docteur.dao.entities.Utilisateur;
 import java.util.List;
-
-import javax.persistence.criteria.CriteriaBuilder.In;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.w3c.dom.ls.LSInput;
+
+import com.cours.allo.docteur.dao.IUtilisateurDao;
+import com.cours.allo.docteur.dao.entities.Utilisateur;
 
 /**
  *
  * @author ElHadji
  */
 @Transactional
+@Repository
 public class UtilisateurDao extends AbstractDao<Utilisateur> implements IUtilisateurDao {
 
     private static final Log log = LogFactory.getLog(UtilisateurDao.class);
@@ -79,7 +79,8 @@ public class UtilisateurDao extends AbstractDao<Utilisateur> implements IUtilisa
 
     @Override
     public boolean deleteUtilisateur(Utilisateur user) {
-    	Utilisateur userBdd = em.find(Utilisateur.class,Integer.toString(user.getIdUtilisateur()));
+    	Integer idUser = user.getIdUtilisateur();
+    	Utilisateur userBdd = em.find(Utilisateur.class,idUser);
     	em.remove(userBdd);
     	return true;
     }

@@ -14,7 +14,10 @@
 	<context:component-scan
 		base-package="com.cours.allo.docteur.service,com.cours.allo.docteur.dao" />
 
+	<!-- <context:annotation-config/> -->
+	
 	<bean id="utilisateurDao" class="com.cours.allo.docteur.dao.impl.UtilisateurDao" />
+	<bean id="serviceFacade" class="com.cours.allo.docteur.service.ServiceFacade" />
 	
 	
 	<bean id="entityManagerFactory"

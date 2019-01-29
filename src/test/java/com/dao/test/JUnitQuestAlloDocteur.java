@@ -18,6 +18,8 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class JUnitQuestAlloDocteur {
 
@@ -46,7 +48,9 @@ public class JUnitQuestAlloDocteur {
 
     @BeforeClass
     public static void init() throws Exception {
-        // configuration de l'application
+    	 ApplicationContext ctx = new ClassPathXmlApplicationContext("file:src/main/resources/applicationContext.xml");
+         
+         serviceFacade = (IServiceFacade) ctx.getBean("serviceFacade");
 
     }
 
